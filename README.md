@@ -9,26 +9,26 @@
 Данный проект старается придерживаться следующей структуры
 
 ```planetext
-sea-battle-game/
+SeaBattle/
 ├── backend/                 # C++ бэкенд
 │   ├── src/
 │   │   ├── game/           # Логика игры
 │   │   │   ├── Game.cpp
-│   │   │   ├── Game.h
+│   │   │   ├── Game.hpp
 │   │   │   ├── Player.cpp
-│   │   │   ├── Player.h
+│   │   │   ├── Player.hpp
 │   │   │   ├── Board.cpp
-│   │   │   ├── Board.h
+│   │   │   ├── Board.hpp
 │   │   │   ├── Ship.cpp
-│   │   │   └── Ship.h
+│   │   │   └── Ship.hpp
 │   │   ├── network/        # Сетевая часть
 │   │   │   ├── Server.cpp
-│   │   │   ├── Server.h
+│   │   │   ├── Server.hpp
 │   │   │   ├── ClientHandler.cpp
-│   │   │   └── ClientHandler.h
+│   │   │   └── ClientHandler.hpp
 │   │   ├── utils/          # Утилиты
 │   │   │   ├── Logger.cpp
-│   │   │   └── Logger.h
+│   │   │   └── Logger.hpp
 │   │   └── main.cpp        # Точка входа
 │   ├── include/            # Заголовочные файлы
 │   ├── third_party/        # Сторонние библиотеки
