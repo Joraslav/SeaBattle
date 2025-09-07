@@ -17,8 +17,16 @@ message(STATUS "C++ standard ${CMAKE_CXX_STANDARD}")
 
 # Опции сборки
 option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_BACKEND "Build backend" ON)
+
+# Включение сборки бекенда
+if(BUILD_BACKEND)
+    add_subdirectory(backend)
+    message(STATUS "Build backend")
+endif()
 
 # Включение сборки тестов
 if(BUILD_TESTS)
     add_subdirectory(tests)
+    message(STATUS "Build tests")
 endif()
