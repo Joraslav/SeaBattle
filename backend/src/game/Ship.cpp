@@ -15,6 +15,8 @@ bool Ship::IsDestroyed() const noexcept {}
 /**
  * @4monika Реализация
  */
-const std::vector<Ship::Coordinates>& Ship::GetPositions() const noexcept {}
+const std::vector<Ship::Coordinates>& Ship::GetPositions() const noexcept {
+    return positions_;
+}
 
 }  // namespace game
