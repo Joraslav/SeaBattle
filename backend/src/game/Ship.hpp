@@ -45,7 +45,7 @@ class Ship {
 /**
  * @brief Однопалубный корабль - Катер
  */
-class Submarines : public Ship {
+class Submarines final : public Ship {
  public:
     Submarines(const Coordinates& pos) : Ship({pos}) {}
     ~Submarines() override = default;
@@ -56,7 +56,7 @@ class Submarines : public Ship {
 /**
  * @brief Двухпалубный корабль - Эсминец
  */
-class Destroyer : public Ship {
+class Destroyer final : public Ship {
  public:
     Destroyer(const Coordinates& bow, const Coordinates& stern) : Ship({bow, stern}) {}
     ~Destroyer() override = default;
@@ -68,7 +68,7 @@ class Destroyer : public Ship {
 /**
  * @brief Трехпалубный корабль - Крейсер
  */
-class Cruiser : public Ship {
+class Cruiser final : public Ship {
  public:
     Cruiser(const Coordinates& bow, const Coordinates& mid, const Coordinates& stern)
         : Ship({bow, mid, stern}) {}
@@ -81,7 +81,7 @@ class Cruiser : public Ship {
 /**
  * @brief Четырехпалубный корабль - Линкор
  */
-class Battleship : public Ship {
+class Battleship final : public Ship {
  public:
     Battleship(const Coordinates& bow, const Coordinates& mid1, const Coordinates& mid2,
                const Coordinates& stern)
