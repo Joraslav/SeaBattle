@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Coordinates.hpp"
+
+#include <memory>
 #include <vector>
 
 namespace board {
