@@ -23,11 +23,18 @@ class Board {
     using ShipPtr = std::unique_ptr<Ship>;
     using Coordinates = coord::Coordinates;
 
-    Board(/* args */);
-    ~Board();
+    Board() = default;
+
+    /**
+     * @brief Выстрел
+     * @param coord Координаты выстрела
+     * @return true если попадание в корабль, false если нет
+     */
+    bool Shoot(const Coordinates& coord) const;
 
  private:
-    /* data */
+    std::vector<ShipPtr> ships_;
+    std::unordered_map<Coordinates, ShipPtr, coord::CoordinatesHash> cells_;
 };
 
 }  // namespace board

@@ -49,6 +49,17 @@ class Coordinates {
     Index y_ = 0;
 };
 
+struct CoordinatesHash {
+    std::size_t operator()(const coord::Coordinates& coord) const noexcept {
+        // Более сложное смешивание с использованием константы и побитовых операций
+        std::size_t x_hash = std::hash<Index>()(coord.GetX());
+        std::size_t y_hash = std::hash<Index>()(coord.GetY());
+        // Используем магическое число и смешивание битов
+        return (x_hash * 0x9e3779b9) ^
+               (y_hash + 0x9e3779b9 + (x_hash << 6) + (x_hash >> 2));
+    }
+};
+
 /**
  * @brief Характеризует расположение коробля на игровом поле
  */
