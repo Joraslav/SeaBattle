@@ -22,11 +22,10 @@ class Ship {
           direction_(positions.front(), positions.back()) {}
 
     /**
-     * @brief Проверка попадания в корабль
-     * @param coord Координата выстрела
-     * @return true если попадание было, false если нет
+     * @brief Совершает выстрел по кораблю
+     * @param coord Координаты выстрела
      */
-    virtual bool IsHit(const Coordinates& coord) noexcept;
+    virtual void Hit(const Coordinates& coord) noexcept;
 
     /**
      * @brief Проверка уничтожения корабля

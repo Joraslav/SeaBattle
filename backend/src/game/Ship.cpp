@@ -6,14 +6,13 @@ using namespace coord;
 
 // ------ Реализация методов класса Ship ------
 
-bool Ship::IsHit(const Coordinates& coord) noexcept {
+void Ship::Hit(const Coordinates& coord) noexcept {
     for (size_t i = 0; i != positions_.size(); ++i) {
         if (coord == positions_[i]) {
             hits_[i] = true;
-            return true;
+            return;
         }
     }
-    return false;
 }
 
 bool Ship::IsDestroyed() const noexcept {
@@ -22,7 +21,6 @@ bool Ship::IsDestroyed() const noexcept {
             return false;
         }
     }
-
     return true;
 }
 
