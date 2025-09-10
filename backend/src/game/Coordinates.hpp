@@ -20,16 +20,24 @@ concept ConvertibleToIndex = std::convertible_to<T, Index> && requires(T value) 
     { value <= std::numeric_limits<Index>::max() } -> std::convertible_to<bool>;
 };
 
+// ------ Константы ------
+
+constexpr Index MAX_INDEX = 10;
+
 /**
  * @brief Координаты на игровом поле
  */
 class Coordinates {
  public:
     Coordinates() = default;
+    Coordinates(const Coordinates& other) = default;
+    Coordinates& operator=(const Coordinates& rhs) = default;
+    Coordinates(Coordinates&& other) noexcept = default;
+    Coordinates& operator=(Coordinates&& rhs) noexcept = default;
 
     template <ConvertibleToIndex T>
     Coordinates(T x, T y) {
-        if (x > static_cast<Index>(10) || y > static_cast<Index>(10)) {
+        if (x > MAX_INDEX || y > MAX_INDEX) {
             throw std::out_of_range("Coordinates more then 10");
         }
 
@@ -62,13 +70,14 @@ struct CoordinatesHash {
 
 /**
  * @brief Характеризует расположение коробля на игровом поле
+ * @param beg начальная координата
+ * @param end конечная координата
  */
-struct Location {
+struct Direction {
     Coordinates begin;
     Coordinates end;
 
-    Location() = default;
-    Location(Coordinates beg, Coordinates en) : begin(beg), end(en) {}
+    Direction(Coordinates beg, Coordinates en) : begin(beg), end(en) {}
 };
 
 }  // namespace coord

@@ -12,11 +12,14 @@ namespace game {
 class Ship {
  public:
     using Coordinates = coord::Coordinates;
+    using Direction = coord::Direction;
 
     Ship() = default;
 
     Ship(const std::vector<Coordinates>& positions)
-        : positions_(positions), hits_(positions.size(), false) {}
+        : positions_(positions),
+          hits_(positions.size(), false),
+          direction_(positions.front(), positions.back()) {}
 
     /**
      * @brief Проверка попадания в корабль
@@ -38,6 +41,12 @@ class Ship {
     virtual void SetPositions(const std::vector<Coordinates>& positions);
 
     /**
+     * @brief Поворот корабля
+     * @return Новые координаты корабля
+     */
+    virtual std::vector<Coordinates> Rotate() const;
+
+    /**
      * @brief Координаты корабля
      * @return Ссылка на координаты корабля
      */
@@ -48,6 +57,7 @@ class Ship {
  protected:
     std::vector<Coordinates> positions_ = {};
     std::vector<bool> hits_ = {};
+    Direction direction_ = {{0, 0}, {0, 0}};
 };
 
 /**
