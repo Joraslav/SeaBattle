@@ -24,9 +24,11 @@ bool Ship::IsDestroyed() const noexcept {
     return true;
 }
 
-const std::vector<Ship::Coordinates>& Ship::GetPositions() const noexcept {
-    return positions_;
+void Ship::SetPositions(const std::vector<Coordinates>& positions) {
+    positions_ = positions;
 }
+
+const std::vector<Ship::Coordinates>& Ship::GetPositions() const { return positions_; }
 
 // ------ Реализация методов класса Submarines ------
 

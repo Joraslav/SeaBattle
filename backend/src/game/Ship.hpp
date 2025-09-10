@@ -32,10 +32,16 @@ class Ship {
     virtual bool IsDestroyed() const noexcept;
 
     /**
+     * @brief Установка координат корабля
+     * @param positions Координаты корабля
+     */
+    virtual void SetPositions(const std::vector<Coordinates>& positions);
+
+    /**
      * @brief Координаты корабля
      * @return Ссылка на координаты корабля
      */
-    virtual const std::vector<Coordinates>& GetPositions() const noexcept;
+    virtual const std::vector<Coordinates>& GetPositions() const;
 
     virtual ~Ship() = default;
 
