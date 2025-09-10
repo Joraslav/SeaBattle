@@ -3,7 +3,7 @@
 #include "Coordinates.hpp"
 #include "Ship.hpp"
 
-#include <deque>
+#include <array>
 #include <memory>
 #include <unordered_map>
 #include <vector>
@@ -16,6 +16,11 @@ namespace board {
 constexpr size_t MAX_SHIPS = 10;
 
 /**
+ * @brief Размер колонки доски
+ */
+constexpr coord::Index COLUMN_SIZE = 10;
+
+/**
  * @brief Класс игровой доски
  */
 class Board {
@@ -24,7 +29,7 @@ class Board {
     using ShipPtr = std::unique_ptr<Ship>;
     using Coordinates = coord::Coordinates;
 
-    enum class State { UNKNOWN, EMPTY, KILLED, SHIP };
+    enum class StateCell { UNKNOWN, EMPTY, KILLED, SHIP };
 
     Board() = default;
 
@@ -32,20 +37,25 @@ class Board {
      * @brief Добавляет корабль на доску
      * @param ship Указатель на корабль
      * @param coord Координаты на доске
-     * @return true если корабль добавлен, false если нет
      */
-    bool AddShip(ShipPtr ship, const Coordinates& coord);
+    void AddShip(ShipPtr ship, const Coordinates& coord);
 
     /**
      * @brief Выстрел
      * @param coord Координаты выстрела
-     * @return true если попадание в корабль, false если нет
+     * @return StateCell состояние клетки после выстрела
      */
-    bool Shoot(const Coordinates& coord) const;
+    StateCell Shoot(const Coordinates& coord);
 
  private:
-    std::deque<ShipPtr> ships_;
-    std::unordered_map<Coordinates, Ship*, coord::CoordinatesHash> cells_;
+    // ------ Данные ------
+    std::vector<ShipPtr> ships_;
+    std::unordered_map<Coordinates, ShipPtr, coord::CoordinatesHash> cells_;
+    std::array<StateCell, COLUMN_SIZE * COLUMN_SIZE> cells_state_;
+
+    // ------ Методы ------
+    StateCell& Get(const Coordinates& coord);
+    const StateCell& Get(const Coordinates& coord) const;
 };
 
 }  // namespace board
