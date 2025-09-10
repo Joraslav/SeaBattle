@@ -3,6 +3,7 @@
 #include "Coordinates.hpp"
 #include "Ship.hpp"
 
+#include <deque>
 #include <memory>
 #include <unordered_map>
 #include <vector>
@@ -23,6 +24,8 @@ class Board {
     using ShipPtr = std::unique_ptr<Ship>;
     using Coordinates = coord::Coordinates;
 
+    enum class State { UNKNOWN, EMPTY, KILLED, SHIP };
+
     Board() = default;
 
     /**
@@ -41,7 +44,7 @@ class Board {
     bool Shoot(const Coordinates& coord) const;
 
  private:
-    std::vector<ShipPtr> ships_;
+    std::deque<ShipPtr> ships_;
     std::unordered_map<Coordinates, Ship*, coord::CoordinatesHash> cells_;
 };
 
