@@ -13,6 +13,8 @@ class Ship {
  public:
     using Coordinates = coord::Coordinates;
 
+    Ship() = default;
+
     Ship(const std::vector<Coordinates>& positions)
         : positions_(positions), hits_(positions.size(), false) {}
 
@@ -38,8 +40,8 @@ class Ship {
     virtual ~Ship() = default;
 
  protected:
-    std::vector<Coordinates> positions_;
-    std::vector<bool> hits_;
+    std::vector<Coordinates> positions_ = {};
+    std::vector<bool> hits_ = {};
 };
 
 /**
@@ -47,6 +49,7 @@ class Ship {
  */
 class Submarines final : public Ship {
  public:
+    Submarines();
     Submarines(const Coordinates& pos) : Ship({pos}) {}
     ~Submarines() override = default;
 
@@ -58,6 +61,7 @@ class Submarines final : public Ship {
  */
 class Destroyer final : public Ship {
  public:
+    Destroyer();
     Destroyer(const Coordinates& bow, const Coordinates& stern) : Ship({bow, stern}) {}
     ~Destroyer() override = default;
 
@@ -70,6 +74,7 @@ class Destroyer final : public Ship {
  */
 class Cruiser final : public Ship {
  public:
+    Cruiser();
     Cruiser(const Coordinates& bow, const Coordinates& mid, const Coordinates& stern)
         : Ship({bow, mid, stern}) {}
     ~Cruiser() override = default;
@@ -83,6 +88,7 @@ class Cruiser final : public Ship {
  */
 class Battleship final : public Ship {
  public:
+    Battleship();
     Battleship(const Coordinates& bow, const Coordinates& mid1, const Coordinates& mid2,
                const Coordinates& stern)
         : Ship({bow, mid1, mid2, stern}) {}

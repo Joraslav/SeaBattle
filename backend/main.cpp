@@ -1,5 +1,8 @@
-#include <iostream>
+#include "Ship.hpp"
 
-int main(int, char**){
-    std::cout << "Hello, from SeaBattle!\n";
+using namespace game;
+
+int main() {
+    Cruiser ship;
+    return 0;
 }
